@@ -1,0 +1,13 @@
+{
+  "name": "threatgraph-shared-ts",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "build": "turbo run build",
+    "type-check": "turbo run type-check"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "typescript": "^5.7.2"
+  }
+}
