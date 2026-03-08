@@ -1,8 +1,6 @@
 // ── Role types ────────────────────────────────────────────────────────────────
 
-export type TenantRole = "tenant_admin" | "analyst" | "reviewer" | "viewer";
-export type PlatformRole = "vendor_admin";
-export type UserRole = PlatformRole | TenantRole;
+export type UserRole = "admin" | "analyst" | "reviewer";
 
 // ── User ──────────────────────────────────────────────────────────────────────
 
@@ -42,11 +40,19 @@ export interface LoginRequest {
   password: string;
 }
 
-/** Phase A: invite-based account creation (no self-registration) */
+/** Invite-based account creation */
 export interface AcceptInviteRequest {
   token: string;
   full_name: string;
   password: string;
+}
+
+/** Self-service workspace signup */
+export interface SignupRequest {
+  email: string;
+  password: string;
+  full_name?: string;
+  workspace_name?: string;
 }
 
 export interface ForgotPasswordRequest {
