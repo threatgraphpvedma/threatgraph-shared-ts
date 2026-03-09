@@ -2,6 +2,9 @@
 
 export type UserRole = "admin" | "analyst" | "reviewer";
 
+/** Roles that exist within a tenant (used for invitations and user management) */
+export type TenantRole = "tenant_admin" | "analyst" | "reviewer" | "viewer";
+
 // ── User ──────────────────────────────────────────────────────────────────────
 
 export interface User {

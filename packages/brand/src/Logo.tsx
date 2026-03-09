@@ -1,4 +1,4 @@
-import React from 'react';
+/// <reference types="react" />
 
 export interface LogoProps {
   compact?: boolean;
@@ -59,7 +59,7 @@ export function Logo({ compact, size = 36 }: LogoProps) {
 
       {!compact && (
         <span className="text-xl font-bold text-white tracking-tight">
-          Threat<span style={{ background: 'linear-gradient(135deg, #38BDF8, #818CF8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Graph</span>
+          Threat<span className="gradient-text">Graph</span>
         </span>
       )}
     </div>
