@@ -1,6 +1,6 @@
 // ── Role types ────────────────────────────────────────────────────────────────
 
-export type UserRole = "admin" | "analyst" | "reviewer";
+export type UserRole = "tenant_admin" | "analyst" | "reviewer" | "viewer" | "vendor_admin";
 
 /** Roles that exist within a tenant (used for invitations and user management) */
 export type TenantRole = "tenant_admin" | "analyst" | "reviewer" | "viewer";
