@@ -60,6 +60,18 @@ export interface StartUploadAnalysisRequest {
 
 // ── Job status response ───────────────────────────────────────────────────────
 
+/** Sanitised scan source metadata (github_token already stripped by the backend). */
+export interface AnalysisInputMetadata {
+  /** GitHub / GitLab repository URL (github jobs only) */
+  repo_url?: string;
+  /** Branch name (github jobs only) */
+  branch?: string;
+  /** Whether a personal access token was supplied (github jobs only) */
+  has_token?: boolean;
+  /** Plain filenames of uploaded files (upload jobs only) */
+  filenames?: string[];
+}
+
 export interface AnalysisJob {
   job_id: string;
   project_id: string;
@@ -71,4 +83,5 @@ export interface AnalysisJob {
   started_at: string | null;
   completed_at: string | null;
   error_message: string | null;
+  input_metadata?: AnalysisInputMetadata;
 }
