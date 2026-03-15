@@ -16,6 +16,7 @@ export interface User {
   is_active: boolean;
   is_verified: boolean;
   is_vendor_admin: boolean;
+  email_verified: boolean;
   created_at: string;
 }
 
@@ -56,6 +57,31 @@ export interface SignupRequest {
   password: string;
   full_name?: string;
   workspace_name?: string;
+  /** Defaults to "free" if omitted */
+  plan?: "free" | "pro" | "business";
+}
+
+/** Initiates a Stripe Checkout session for Pro or Business plan signup */
+export interface CheckoutRequest {
+  email: string;
+  password: string;
+  full_name?: string;
+  workspace_name?: string;
+  plan: "pro" | "business";
+}
+
+export interface CheckoutResponse {
+  checkout_url: string;
+  pending_id: string;
+}
+
+export interface CheckoutStatusResponse {
+  status: "pending" | "created" | "error";
+  /** Only present when status === "created" */
+  access_token?: string;
+  refresh_token?: string;
+  token_type?: string;
+  expires_in?: number;
 }
 
 export interface ForgotPasswordRequest {

@@ -2,7 +2,7 @@ import type { TenantRole } from "./auth";
 
 // ── Tenant plan ───────────────────────────────────────────────────────────────
 
-export type TenantPlan = "free" | "starter" | "pro" | "enterprise";
+export type TenantPlan = "free" | "pro" | "business";
 
 // ── Tenant list / detail ──────────────────────────────────────────────────────
 

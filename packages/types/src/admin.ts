@@ -73,33 +73,6 @@ export interface UsageStats {
   storage_bytes: number;
 }
 
-// ── API keys ──────────────────────────────────────────────────────────────────
-
-export interface ApiKey {
-  id: string;
-  name: string;
-  /** Displayable key prefix, e.g. "sk-a1b2c3d4-"  (never the full key) */
-  prefix: string;
-  scopes: string[];
-  is_active: boolean;
-  expires_at: string | null;
-  last_used_at: string | null;
-  created_at: string;
-  /** Only present immediately after creation — never stored server-side */
-  full_key?: string;
-}
-
-export interface ApiKeyListResponse {
-  items: ApiKey[];
-  total: number;
-}
-
-export interface CreateApiKeyRequest {
-  name: string;
-  scopes?: string[];
-  expires_at?: string | null;
-}
-
 // ── Audit logs ────────────────────────────────────────────────────────────────
 
 export interface AuditLogEntry {
@@ -128,5 +101,4 @@ export interface QuotaUsage {
   jobs_this_month: { used: number; limit: number };
   users: { used: number; limit: number };
   storage_bytes: { used: number; limit: number };
-  api_keys: { used: number; limit: number };
 }
