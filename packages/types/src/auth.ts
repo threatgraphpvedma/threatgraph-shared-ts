@@ -17,6 +17,7 @@ export interface User {
   is_verified: boolean;
   is_vendor_admin: boolean;
   email_verified: boolean;
+  tenant_plan: string;
   created_at: string;
 }
 
@@ -82,6 +83,20 @@ export interface CheckoutStatusResponse {
   refresh_token?: string;
   token_type?: string;
   expires_in?: number;
+}
+
+/** Upgrade an existing tenant from free to a paid plan */
+export interface UpgradeRequest {
+  plan: "pro" | "business";
+}
+
+export interface UpgradeResponse {
+  checkout_url: string;
+}
+
+export interface ChangePasswordRequest {
+  current_password: string;
+  new_password: string;
 }
 
 export interface ForgotPasswordRequest {

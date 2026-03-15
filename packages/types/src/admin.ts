@@ -101,4 +101,5 @@ export interface QuotaUsage {
   jobs_this_month: { used: number; limit: number };
   users: { used: number; limit: number };
   storage_bytes: { used: number; limit: number };
+  tenant_plan: string;
 }
