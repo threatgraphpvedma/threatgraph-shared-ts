@@ -68,6 +68,7 @@ function makeTokenHelpers(storageKey: string) {
 export function createApiClient(
   apiBase: string,
   storageKey: string = "auth-storage",
+  onTokensRefreshed?: (accessToken: string, refreshToken: string) => void,
 ): AxiosInstance {
   const { getStoredToken, setStoredTokens, clearStoredTokens } =
     makeTokenHelpers(storageKey);
@@ -134,6 +135,7 @@ export function createApiClient(
         }>(`${apiBase}/api/v1/auth/refresh`, { refresh_token: refreshToken });
 
         setStoredTokens(data.access_token, data.refresh_token);
+        onTokensRefreshed?.(data.access_token, data.refresh_token);
         processQueue(null, data.access_token);
         originalRequest.headers.Authorization = `Bearer ${data.access_token}`;
         return client(originalRequest);
