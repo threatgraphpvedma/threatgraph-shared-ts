@@ -72,9 +72,15 @@ export function createApiClient(
 ): AxiosInstance {
   const { getStoredToken, setStoredTokens, clearStoredTokens } =
     makeTokenHelpers(storageKey);
+  // Do NOT set a global Content-Type default here.
+  // Axios auto-detects the correct Content-Type per request:
+  //   - Plain objects / strings → "application/json"
+  //   - FormData               → "multipart/form-data; boundary=..."
+  // Setting "application/json" globally would cause FormData to be
+  // JSON-serialised instead of sent as multipart (the browser-provided
+  // boundary would be missing, breaking all file uploads with 422).
   const client = axios.create({
     baseURL: `${apiBase}/api/v1`,
-    headers: { "Content-Type": "application/json" },
     withCredentials: false,
   });
 
