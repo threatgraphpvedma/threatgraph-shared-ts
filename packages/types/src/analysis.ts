@@ -5,6 +5,7 @@ export type JobStatus =
   | "running"
   | "ingesting"
   | "analyzing"
+  | "modeling"
   | "mapping"
   | "reporting"
   | "complete"
@@ -17,7 +18,8 @@ export const STATUS_PROGRESS: Record<JobStatus, number> = {
   running: 5,
   ingesting: 20,
   analyzing: 45,
-  mapping: 70,
+  modeling: 60,
+  mapping: 75,
   reporting: 90,
   complete: 100,
   failed: 0,
@@ -28,6 +30,7 @@ export const STATUS_LABELS: Record<JobStatus, string> = {
   running: "Starting",
   ingesting: "Ingesting",
   analyzing: "Analyzing",
+  modeling: "Modeling system",
   mapping: "Mapping STRIDE",
   reporting: "Generating report",
   complete: "Complete",

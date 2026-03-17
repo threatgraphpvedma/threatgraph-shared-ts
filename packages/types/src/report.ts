@@ -11,6 +11,51 @@ export interface ReportFinding {
   cve_references: string[];
 }
 
+// ── System model types ────────────────────────────────────────────────────────
+
+export interface SystemComponent {
+  name: string;
+  type: "service" | "database" | "queue" | "external" | "client" | string;
+  description: string;
+  technologies: string[];
+  exposes?: string[];
+  stores_data?: string[];
+  authentication?: string;
+}
+
+export interface SystemDataFlow {
+  from: string;
+  to: string;
+  data: string;
+  protocol: string;
+  authentication?: string;
+}
+
+export interface SystemTrustBoundary {
+  name: string;
+  crosses: string[];
+  controls: string[];
+}
+
+export interface SystemActor {
+  name: string;
+  type: "external" | "internal" | "system" | string;
+  privileges: string;
+}
+
+export interface SystemModel {
+  system_name: string;
+  system_purpose: string;
+  components: SystemComponent[];
+  data_flows: SystemDataFlow[];
+  trust_boundaries: SystemTrustBoundary[];
+  actors: SystemActor[];
+  sensitive_data: string[];
+  existing_controls: string[];
+}
+
+// ── Report types ──────────────────────────────────────────────────────────────
+
 export interface ThreatReport {
   id: string;
   job_id: string;
@@ -26,6 +71,7 @@ export interface ThreatReport {
   low_count: number;
   created_at: string;
   findings: ReportFinding[];
+  system_model?: SystemModel;
 }
 
 // ── STRIDE helpers ────────────────────────────────────────────────────────────
